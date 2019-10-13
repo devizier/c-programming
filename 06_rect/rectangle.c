@@ -33,11 +33,6 @@ rectangle canonicalize(rectangle r) {
         r.y = r.y - r.height;
     }
     return r;
-
-//    r2.x = 4;
-//    r2.y = 5;
-//    r2.width = -5;
-//    r2.height = -7;
 }
 
 rectangle intersection(rectangle r1, rectangle r2) {
@@ -49,6 +44,7 @@ rectangle intersection(rectangle r1, rectangle r2) {
     int left_x = min(r1.x, r2.x);
     int left_width = left_x == r1.x ? r1.width : r2.width;
     int right_x = max(r1.x, r2.x);
+    int right_width = right_x == r1.x ? r1.width : r2.width;
 
     if (left_x + left_width < right_x) {
         return res;
@@ -57,6 +53,7 @@ rectangle intersection(rectangle r1, rectangle r2) {
     int bottom_y = min(r1.y, r2.y);
     int bottom_height = bottom_y == r1.y ? r1.height : r2.height;
     int top_y = max(r1.y, r2.y);
+    int top_height = top_y == r1.y ? r1.height : r2.height;
 
     if (bottom_y + bottom_height < top_y) {
         return res;
@@ -66,7 +63,10 @@ rectangle intersection(rectangle r1, rectangle r2) {
     res.y = top_y;
 
     res.width = left_x + left_width - right_x;
+    res.width = res.width > right_width ? right_width : res.width;
+
     res.height = bottom_y + bottom_height - top_y;
+    res.height = res.height > top_height ? top_height : res.height;
 
     return res;
 }
