@@ -2,10 +2,12 @@
 #include <stdlib.h>
 
 // Declare your rectangle structure here!
-typedef struct _retire_info {
+struct _retire_info {
     int months;
     double contribution, rate_of_return;
-} retire_info;
+};
+
+typedef struct _retire_info retire_info;
 
 void calculate(retire_info info, int *currentAge, double *currentSavings) {
     for (int i = 0; i < info.months; i += 1) {
