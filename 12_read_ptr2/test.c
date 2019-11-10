@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int f(int ** r, int ** s) {
-  int temp = ** r;
+  int temp = **r;
   int temp2 = **s;
   int * z = *r;
   *r = *s;
